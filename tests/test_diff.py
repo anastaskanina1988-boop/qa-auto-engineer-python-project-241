@@ -27,3 +27,16 @@ def test_generate_diff_yaml():
     )
 
     assert result == expected
+
+def test_generate_diff_plain():
+    base_path = Path('tests/test_data')
+
+    expected = (base_path / 'plain_expected.txt').read_text()
+
+    result = generate_diff(
+        base_path / 'file1.json',
+        base_path / 'file2.json',
+        'plain',
+    )
+
+    assert result == expected    
