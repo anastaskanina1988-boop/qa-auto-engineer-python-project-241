@@ -39,4 +39,17 @@ def test_generate_diff_plain():
         'plain',
     )
 
-    assert result == expected    
+    assert result == expected
+
+def test_generate_diff_json():
+    base_path = Path('tests/test_data')
+
+    expected = (base_path / 'json_expected.txt').read_text()
+
+    result = generate_diff(
+        base_path / 'file1.json',
+        base_path / 'file2.json',
+        'json',
+    )
+
+    assert result == expected        
