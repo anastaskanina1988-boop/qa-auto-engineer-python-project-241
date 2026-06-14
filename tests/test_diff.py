@@ -14,3 +14,16 @@ def test_generate_diff():
     )
 
     assert result == expected
+
+
+def test_generate_diff_yaml():
+    base_path = Path('tests/test_data')
+
+    expected = (base_path / 'expected.txt').read_text()
+
+    result = generate_diff(
+        base_path / 'file1.yml',
+        base_path / 'file2.yml',
+    )
+
+    assert result == expected
