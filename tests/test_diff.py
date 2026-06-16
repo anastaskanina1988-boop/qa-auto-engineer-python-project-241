@@ -1,6 +1,8 @@
 from pathlib import Path
 
-from hexlet_code import generate_diff
+import pytest
+
+from gendiff import generate_diff
 
 
 def test_generate_diff():
@@ -28,6 +30,7 @@ def test_generate_diff_yaml():
 
     assert result == expected
 
+
 def test_generate_diff_plain():
     base_path = Path('tests/test_data')
 
@@ -41,6 +44,7 @@ def test_generate_diff_plain():
 
     assert result == expected
 
+
 def test_generate_diff_json():
     base_path = Path('tests/test_data')
 
@@ -52,4 +56,15 @@ def test_generate_diff_json():
         'json',
     )
 
-    assert result == expected        
+    assert result == expected
+
+
+def test_generate_diff_unknown_format():
+    base_path = Path('tests/test_data')
+
+    with pytest.raises(ValueError, match='Unknown format'):
+        generate_diff(
+            base_path / 'file1.json',
+            base_path / 'file2.json',
+            'unknown',
+        )

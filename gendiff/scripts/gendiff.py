@@ -1,6 +1,6 @@
 import argparse
 
-from hexlet_code import generate_diff
+from gendiff import generate_diff
 
 
 def main():
